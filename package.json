@@ -1,0 +1,36 @@
+{
+  "name": "nuclear-astrophysics-lab",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:report": "vitest run --reporter=default --reporter=json --outputFile=reports/vitest.json",
+    "test:e2e": "playwright test",
+    "validate:data": "node --import tsx scripts/validate-data.ts",
+    "report:validation": "node --import tsx scripts/validation-report.ts",
+    "export:data": "node --import tsx scripts/export-data.ts",
+    "build:standalone": "node scripts/make-standalone.mjs"
+  },
+  "dependencies": {
+    "react": "19.1.1",
+    "react-dom": "19.1.1",
+    "lucide-react": "0.468.0",
+    "jspdf": "3.0.3"
+  },
+  "devDependencies": {
+    "@types/react": "19.1.13",
+    "@types/react-dom": "19.1.9",
+    "@types/node": "24.5.2",
+    "@vitejs/plugin-react": "5.0.3",
+    "@playwright/test": "1.55.1",
+    "typescript": "5.9.2",
+    "vite": "7.1.7",
+    "vitest": "3.2.4",
+    "tsx": "4.20.5"
+  }
+}

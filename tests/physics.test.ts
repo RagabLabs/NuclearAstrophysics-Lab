@@ -1,0 +1,128 @@
+import {describe,it,expect} from 'vitest';
+import {C} from '../src/physics/constants';
+import {mbDensity,thermalDistribution} from '../src/physics/thermalDistribution';
+import {sFactor,coulombExponent} from '../src/physics/sFactor';
+import {gamowPeak} from '../src/physics/gamowPeak';
+import {gamowWindow} from '../src/physics/gamowWindow';
+import {integrate} from '../src/physics/integration';
+import {thermalRate,constantSigma,constantS,tabulatedSigma,parseCrossSectionCSV} from '../src/physics/thermalRate';
+import {volumetricRate} from '../src/physics/volumetricRate';
+import {reactionTimescale} from '../src/physics/reactionTimescale';
+import {resonantRate} from '../src/physics/resonantRate';
+import {temperatureSensitivity,rateInterpolation} from '../src/physics/temperatureSensitivity';
+import {energyGeneration} from '../src/physics/energyGeneration';
+import {propagateCovariance} from '../src/physics/uncertainty';
+import {expChecked} from '../src/physics/validation';
+import * as U from '../src/physics/units';
+const close=(a:number,b:number,rtol=1e-8)=>expect(Math.abs(a-b)/Math.max(Math.abs(b),Number.MIN_VALUE)).toBeLessThan(rtol);
+describe('01 relative energy distribution, analytic gamma distribution',()=>{
+ it('normalizes over 0 to 50 kT',()=>close(thermalDistribution(1.5e7,.5,0,50*C.kB_keV*1.5e7).normalization,1,1e-9));
+ it('mean from independent integral is 3kT/2',()=>{const kt=C.kB_keV*1e8;const q=integrate(u=>mbDensity(kt*u*u,1e8)*(kt*u*u)*2*kt*u,0,8);close(q.value,1.5*kt);});
+ it('mode is kT/2, not kT',()=>close(thermalDistribution(1e8,1,0,1000).mode,4.308666631072589));
+ it('energy PDF does not depend on reduced mass',()=>expect(thermalDistribution(1e8,1,0,100).normalization).toBe(thermalDistribution(1e8,4,0,100).normalization));
+ it('f(0)=0',()=>expect(mbDensity(0,1e8)).toBe(0));
+ it.each([0,-1,NaN,Infinity])('rejects temperature %s',T=>expect(()=>thermalDistribution(T,1,0,100)).toThrow());
+ it('rejects negative energy',()=>expect(()=>mbDensity(-1,1e8)).toThrow());
+ it('identifies finite-range incompleteness',()=>expect(thermalDistribution(1e8,1,0,1).normalization).toBeLessThan(.1));
+ it('rejects relativistic-temperature model',()=>expect(()=>thermalDistribution(1e13,1,0,100)).toThrow(/nonrelativistic/));
+});
+describe('02 S-factor, independently calculated numeric case',()=>{
+ it('100keV,1 microbarn,Z1Z2=1,mu=1 yields 0.0022853535975897294 keV b',()=>close(sFactor(100,1e-6,1,1,1).S,.0022853535975897294));
+ it('reproduces rounded 31.29 Coulomb coefficient',()=>close(coulombExponent(1,1,1,1),31.29,4e-5));
+ it('propagates sigma-only supplied relative error',()=>close(sFactor(100,1e-6,1,1,1,.1).uncertainty!,.00022853535975897294));
+ it('does not manufacture absent uncertainty',()=>expect(sFactor(100,1e-6,1,1,1).uncertainty).toBeUndefined());
+ it('zero sigma yields zero S',()=>expect(sFactor(1,0,1,1,1).S).toBe(0));
+ it('rejects neutrons',()=>expect(()=>sFactor(1,1,0,26,1)).toThrow());
+ it('rejects zero CM energy',()=>expect(()=>sFactor(0,1,1,1,1)).toThrow());
+ it('rejects overflow',()=>expect(()=>sFactor(1e-8,1,30,30,100)).toThrow(/exceeds/));
+});
+describe('03 and 04 Gamow published approximations: Rauscher 2010 eq8,9',()=>{
+ const refE=1000*.12204*(.5*.015**2)**(1/3),refW=1000*.23682*(.5*.015**5)**(1/6);
+ it('pp mu=.5 T9=.015 peak matches rounded published prefactor',()=>close(gamowPeak(1.5e7,1,1,.5).E0,refE,6e-5));
+ it('pp window matches rounded published prefactor',()=>close(gamowWindow(1.5e7,1,1,.5).width,refW,6e-5));
+ it('window half-width endpoints straddle E0',()=>{const r=gamowWindow(1.5e7,1,1,.5);close(r.high-r.low,r.width);});
+ it('refuses resonant regime',()=>expect(()=>gamowPeak(1e8,1,7,1,'resonant')).toThrow());
+ it('refuses neutron regime',()=>expect(()=>gamowPeak(1e8,0,26,1,'neutron')).toThrow());
+ it('rejects noninteger charges',()=>expect(()=>gamowPeak(1e8,1.5,1,1)).toThrow());
+});
+describe('05 adaptive integration with external analytic integrals',()=>{
+ it('integrates polynomial exactly',()=>close(integrate(x=>x**4,0,1).value,.2));
+ it('integrates rapidly varying Gaussian',()=>close(integrate(x=>Math.exp(-1000*(x-.3)**2),0,1).value,Math.sqrt(Math.PI/1000),1e-7));
+ it('resolves very narrow Lorentzian only with declared feature breakpoints',()=>{const c=.54321,w=1e-7,ref=(Math.atan((1-c)/w)-Math.atan(-c/w))/Math.PI;const q=integrate(x=>w/(Math.PI*((x-c)**2+w*w)),0,1,1e-7,1e-10,[c-100*w,c-10*w,c-w,c,c+w,c+10*w,c+100*w]);expect(q.converged).toBe(true);close(q.value,ref,2e-7);});
+ it('flags exhausted quadrature budget',()=>expect(integrate(x=>Math.sin(12345*x),0,1,1e-12,1e-15,[],32).converged).toBe(false));
+ it('rejects nonfinite integrand',()=>expect(()=>integrate(()=>Infinity,0,1)).toThrow());
+ it('constant 1 barn: analytic mean speed, T=1e8K mu=1',()=>close(thermalRate(1e8,1,constantSigma(1,1e-8,1e4),1e-8,1e4).pairRate,1.4550809315995344e-16));
+ it('finite constant-sigma interval matches exact exponential antiderivative',()=>{const T=1e8,kt=C.kB_keV*T,a=1,b=10;const ref=1.4550809315995344e-16*((1+a/kt)*Math.exp(-a/kt)-(1+b/kt)*Math.exp(-b/kt));close(thermalRate(T,1,constantSigma(1,a,b),a,b).pairRate,ref);});
+ it('1/v cross section yields temperature-independent coefficient',()=>{const m={name:'analytic 1/v',range:[1e-10,1e5] as [number,number],knots:[],coverage:'declared-model' as const,logSigma:(E:number)=>-.5*Math.log(E)};const ref=1e-24*Math.sqrt(2*1.602176634e-9/1.66053906892e-24);close(thermalRate(1e8,1,m,1e-10,1e5).pairRate,ref);close(thermalRate(2e8,1,m,1e-10,1e5).pairRate,ref);});
+ it('zero cross section gives finite zero',()=>expect(thermalRate(1e8,1,constantSigma(0,.1,100),.1,100).pairRate).toBe(0));
+ it('refinement stabilizes constant-S integral',()=>{const m=constantS(.2,1,1,2/3,.001,500),a=thermalRate(1e8,2/3,m,.001,500,1e-5),b=thermalRate(1e8,2/3,m,.001,500,1e-9);close(a.pairRate,b.pairRate,1e-6);});
+ it('tabulated sigma interpolates a known power law',()=>{const m=tabulatedSigma([{energyKeV:1,sigmaBarn:1},{energyKeV:10,sigmaBarn:100}]);close(Math.exp(m.logSigma(2)!),4);});
+ it('zero sigma interval is handled without log0',()=>expect(tabulatedSigma([{energyKeV:1,sigmaBarn:0},{energyKeV:2,sigmaBarn:0}]).logSigma(1.5)).toBeNull());
+ it('rejects duplicate energy grid',()=>expect(()=>parseCrossSectionCSV('1,1\n1,2')).toThrow());
+ it('rejects missing energy data',()=>expect(()=>parseCrossSectionCSV('energy_keV,sigma_barn\n1,1')).toThrow());
+ it('rejects extrapolation beyond sigma grid',()=>{const m=tabulatedSigma([{energyKeV:1,sigmaBarn:1},{energyKeV:10,sigmaBarn:1}]);expect(()=>thermalRate(1e8,1,m,.1,100)).toThrow();});
+ it('rejects bad tolerance',()=>expect(()=>thermalRate(1e8,1,constantSigma(1,1,10),1,10,1e-20)).toThrow());
+ it('warns that finite data do not prove total-rate coverage',()=>{const m=tabulatedSigma([{energyKeV:1,sigmaBarn:1},{energyKeV:10,sigmaBarn:1}]);expect(thermalRate(1e8,1,m,1,10).warnings.join()).toMatch(/COVERED-INTERVAL/);});
+});
+describe('06 reaction counting and identical particles',()=>{
+ it('distinct n1=2e10,n2=3e10,k=1e-20 yields6 events',()=>expect(volumetricRate(2e10,3e10,1e-20).rate).toBe(6));
+ it('identical yields2 events and4 consumed, ignores n2',()=>{const r=volumetricRate(2e10,999,1e-20,true);expect(r.rate).toBe(2);expect(r.consumption1).toBe(4);expect(r.symmetryFactor).toBe(.5);});
+ it('zero density yields zero events',()=>expect(volumetricRate(0,1e20,1e-20).rate).toBe(0));
+ it('rejects negative density',()=>expect(()=>volumetricRate(-1,1,1)).toThrow());
+ it('rejects product overflow',()=>expect(()=>volumetricRate(1e250,1e250,1)).toThrow());
+});
+describe('07 depletion timescale',()=>{
+ it('fixed-reservoir tau =1/(n k)',()=>close(reactionTimescale(1e20,1e-22,'distinct').seconds!,100));
+ it('identical consumption has no spurious factor two',()=>close(reactionTimescale(1e20,1e-22,'identical').seconds!,100));
+ it('zero density has no finite timescale',()=>expect(reactionTimescale(0,1e-22,'distinct').seconds).toBeNull());
+ it('zero coefficient has no finite timescale',()=>expect(reactionTimescale(1e20,0,'distinct').seconds).toBeNull());
+ it('negative partner density rejected',()=>expect(()=>reactionTimescale(-1,1,'distinct')).toThrow());
+});
+describe('08 isolated narrow resonance, independent rounded published formula',()=>{
+ const resonance={energyKeV:259.4,strengthEV:.0129,widthKeV:.96};
+ it('matches 1.5399e11*(mu*T9)^(-3/2)*omegaGammaMeV*exp(-11.605ErMeV/T9)',()=>close(resonantRate(3e8,14/15,resonance).molarRate,.5880794763602264,2e-4));
+ it('CGS reference case matches separately evaluated value',()=>close(resonantRate(3e8,14/15,resonance).pairRate,9.766937448551752e-25));
+ it('rejects broad resonance',()=>expect(()=>resonantRate(1e7,1,{...resonance,widthKeV:10})).toThrow());
+ it('rejects missing width certification',()=>expect(()=>resonantRate(1e8,1,{energyKeV:100,strengthEV:1})).toThrow());
+ it('rejects missing strength',()=>expect(()=>resonantRate(1e8,1,{energyKeV:100,strengthEV:undefined as unknown as number,widthKeV:.001})).toThrow());
+ it('flags rate underflow without infinity',()=>{const r=resonantRate(1e4,1,{energyKeV:100,strengthEV:1,widthKeV:1e-6});expect(r.pairRate).toBe(0);expect(r.underflow).toBe(true);});
+ it('keeps missing resonance errors unknown',()=>expect(resonantRate(3e8,1,resonance).strengthContribution).toBeUndefined());
+});
+describe('09 sensitivity, exact arbitrary power law on nonuniform grid',()=>{
+ const pts=[.01,.017,.03,.1,.8,1].map(T9=>({T9,rate:7*T9**2.5}));
+ it('all local slopes equal2.5',()=>temperatureSensitivity(pts).forEach(p=>close(p.sensitivity,2.5,1e-10)));
+ it('explicitly flags both boundaries',()=>{const r=temperatureSensitivity(pts);expect(r[0].boundary).toBe(true);expect(r.at(-1)!.boundary).toBe(true);expect(r[1].boundary).toBe(false);});
+ it('requires three points',()=>expect(()=>temperatureSensitivity(pts.slice(0,2))).toThrow());
+ it('rejects zero rates instead of differentiating log0',()=>expect(()=>temperatureSensitivity([{T9:1,rate:0},{T9:2,rate:1},{T9:3,rate:2}])).toThrow());
+ it('interpolates power law in log-log',()=>close(rateInterpolation(pts,.05).rate,7*.05**2.5));
+ it('does not extrapolate',()=>expect(()=>rateInterpolation(pts,2)).toThrow());
+});
+describe('10 explicit local energy accounting',()=>{
+ it('MeV to erg and erg/g/s to W/kg are correct',()=>{const r=energyGeneration(1e10,1,100);close(r.ergCm3S,16021.76634);close(r.ergGS,160.2176634);close(r.wKg,.01602176634);});
+ it('zero deposited energy yields zero heating',()=>expect(energyGeneration(1e10,0,100).wKg).toBe(0));
+ it('available energy minus local deposition remains nonlocal',()=>expect(energyGeneration(1,1,1,3).lossMeV).toBe(2));
+ it('missing available energy leaves losses unknown',()=>expect(energyGeneration(1,1,1).lossMeV).toBeNull());
+ it('deposition cannot exceed available energy',()=>expect(()=>energyGeneration(1,3,1,2)).toThrow());
+ it('zero mass density invalidates specific heating',()=>expect(()=>energyGeneration(1,1,0)).toThrow());
+ it('rejects negative event rate',()=>expect(()=>energyGeneration(-1,1,1)).toThrow());
+});
+describe('units, floating-point bounds and correlated uncertainty',()=>{
+ it('K GK and T9 agree',()=>{expect(U.toKelvin(.3,'GK')).toBe(3e8);expect(U.toKelvin(.3,'T9')).toBe(3e8);});
+ it('energy eV keV MeV agree',()=>{expect(U.toKeV(1000,'eV')).toBe(1);expect(U.toKeV(.001,'MeV')).toBe(1);});
+ it('barn and cm2 agree',()=>close(U.toBarn(1e-24,'cm2'),1));
+ it('molar-to-pair uses Avogadro exactly once',()=>close(U.toPairRate(C.NA,'cm3/mol/s'),1));
+ it('pair-to-molar conversion is inverse',()=>close(U.toMolarRate(1/C.NA),1));
+ it('rejects unsupported units at runtime',()=>expect(()=>U.toKeV(1,'joule' as U.EnergyUnit)).toThrow());
+ it('underflow explicit and finite',()=>expect(expChecked(-800)).toEqual({value:0,underflow:true}));
+ it('overflow throws',()=>expect(()=>expChecked(800)).toThrow());
+ it('fully correlated errors add linearly',()=>expect(propagateCovariance([1,1],[[1,1],[1,1]])).toBe(2));
+ it('anticorrelated inputs can cancel',()=>expect(propagateCovariance([1,1],[[1,-1],[-1,1]])).toBe(0));
+ it('rejects non-PSD covariance',()=>expect(()=>propagateCovariance([1,1],[[1,2],[2,1]])).toThrow());
+ it('rejects asymmetric covariance',()=>expect(()=>propagateCovariance([1,1],[[1,.1],[.2,1]])).toThrow());
+});
+describe('Extreme scale regressions',()=>{
+ it('normalizes a physically idealized very low-temperature PDF without missing the peak',()=>expect(thermalDistribution(1e-20,1,0,100).normalization).toBeCloseTo(1,10));
+ it('far-tail PDF remains finite at tiny temperatures',()=>expect(mbDensity(1,1e-200)).toBe(0));
+ it('unit conversion overflow is rejected',()=>expect(()=>U.toKelvin(1e308,'GK')).toThrow());
+ it('Gamow numerically unresolved kT is rejected',()=>expect(()=>gamowPeak(Number.MIN_VALUE,1,1,1)).toThrow());
+});

@@ -1,0 +1,1312 @@
+{
+  "schemaVersion": "1.0.0",
+  "accessedUTC": "2026-10-15",
+  "units": {
+    "energy": "keV (center of mass unless explicitly kT)",
+    "crossSection": "barn",
+    "S": "keV barn",
+    "temperature": "GK (T9)",
+    "pairRate": "cm3/s",
+    "molarRate": "cm3 mol^-1 s^-1",
+    "numberDensity": "particles/cm3"
+  },
+  "reactions": [
+    {
+      "id": "dpg",
+      "label": "2H(p,γ)3He",
+      "reactants": [
+        "p",
+        "2H"
+      ],
+      "products": [
+        "3He",
+        "gamma"
+      ],
+      "charges": [
+        1,
+        1
+      ],
+      "massNumbers": [
+        1,
+        2
+      ],
+      "mu": 0.6666666666666666,
+      "kind": "charged",
+      "regime": "nonresonant",
+      "datasets": [
+        "nacre-dpg"
+      ],
+      "defaultDataset": "nacre-dpg",
+      "range": [
+        0.001,
+        10
+      ],
+      "energyRange": null,
+      "crossSectionStatus": "No monoenergetic cross-section grid bundled.",
+      "resonanceStatus": "No resonance parameters bundled.",
+      "crossSectionData": null,
+      "reactionRateData": [
+        "nacre-dpg"
+      ],
+      "uncertainty": "See per-dataset record. Defaults for mu and abundance conversion use mass-number approximations."
+    },
+    {
+      "id": "he33",
+      "label": "3He(3He,2p)4He",
+      "reactants": [
+        "3He",
+        "3He"
+      ],
+      "products": [
+        "4He",
+        "p",
+        "p"
+      ],
+      "charges": [
+        2,
+        2
+      ],
+      "massNumbers": [
+        3,
+        3
+      ],
+      "mu": 1.5,
+      "kind": "charged",
+      "regime": "nonresonant",
+      "datasets": [
+        "nacre-he33"
+      ],
+      "defaultDataset": "nacre-he33",
+      "range": [
+        0.003,
+        10
+      ],
+      "energyRange": null,
+      "crossSectionStatus": "No monoenergetic cross-section grid bundled.",
+      "resonanceStatus": "No narrow resonance parameters bundled.",
+      "crossSectionData": null,
+      "reactionRateData": [
+        "nacre-he33"
+      ],
+      "uncertainty": "See per-dataset record. Defaults for mu and abundance conversion use mass-number approximations."
+    },
+    {
+      "id": "c12p",
+      "label": "12C(p,γ)13N",
+      "reactants": [
+        "p",
+        "12C"
+      ],
+      "products": [
+        "13N",
+        "gamma"
+      ],
+      "charges": [
+        1,
+        6
+      ],
+      "massNumbers": [
+        1,
+        12
+      ],
+      "mu": 0.9230769230769231,
+      "kind": "charged",
+      "regime": "mixed",
+      "datasets": [
+        "jina-c12"
+      ],
+      "defaultDataset": "jina-c12",
+      "range": [
+        0.01,
+        1
+      ],
+      "energyRange": null,
+      "crossSectionStatus": "No monoenergetic cross-section grid bundled.",
+      "resonanceStatus": "Fit terms are not measured resonance records.",
+      "crossSectionData": null,
+      "reactionRateData": [
+        "jina-c12"
+      ],
+      "uncertainty": "See per-dataset record. Defaults for mu and abundance conversion use mass-number approximations."
+    },
+    {
+      "id": "n14p",
+      "label": "14N(p,γ)15O",
+      "reactants": [
+        "p",
+        "14N"
+      ],
+      "products": [
+        "15O",
+        "gamma"
+      ],
+      "charges": [
+        1,
+        7
+      ],
+      "massNumbers": [
+        1,
+        14
+      ],
+      "mu": 0.9333333333333333,
+      "kind": "charged",
+      "regime": "mixed",
+      "datasets": [
+        "jina-n14",
+        "im05-total",
+        "im05-s",
+        "im05-res"
+      ],
+      "defaultDataset": "jina-n14",
+      "range": [
+        0.01,
+        1
+      ],
+      "energyRange": [
+        118.9,
+        248.6
+      ],
+      "crossSectionStatus": "Only 11 partial-channel S factors, not total sigma(E).",
+      "resonanceStatus": "Measured CM259.4keV, Gamma0.96keV, omega gamma12.9meV.",
+      "crossSectionData": null,
+      "reactionRateData": [
+        "jina-n14",
+        "im05-total"
+      ],
+      "uncertainty": "See per-dataset record. Defaults for mu and abundance conversion use mass-number approximations."
+    },
+    {
+      "id": "fe56n",
+      "label": "56Fe(n,γ)57Fe",
+      "reactants": [
+        "n",
+        "56Fe"
+      ],
+      "products": [
+        "57Fe",
+        "gamma"
+      ],
+      "charges": [
+        0,
+        26
+      ],
+      "massNumbers": [
+        1,
+        56
+      ],
+      "mu": 0.9824561403508771,
+      "kind": "neutron",
+      "regime": "neutron",
+      "datasets": [
+        "kadonis-fe56"
+      ],
+      "defaultDataset": "kadonis-fe56",
+      "range": [
+        0.05802259060775042,
+        1.1604518121550085
+      ],
+      "energyRange": null,
+      "crossSectionStatus": "MACS(kT), not sigma(E). Never passed to cross-section quadrature.",
+      "resonanceStatus": "No individual resonance strength bundled.",
+      "crossSectionData": null,
+      "reactionRateData": [
+        "kadonis-fe56"
+      ],
+      "uncertainty": "See per-dataset record. Defaults for mu and abundance conversion use mass-number approximations."
+    }
+  ],
+  "sources": [
+    {
+      "id": "nacre-dpg",
+      "name": "NACRE II · 2H(p,gamma)3He",
+      "version": "Xu et al. 2013; official table, accessed 2026-10-15",
+      "url": "https://www.astro.ulb.ac.be/nacreii/data/2hpg3he.dat",
+      "status": "Evaluated total rate, 60 tabulated temperatures",
+      "uncertainty": "Published low/high evaluation bounds; no covariance. Not assigned a confidence level here.",
+      "reuse": "Small factual data extract; original database attribution retained. No separate open data license asserted."
+    },
+    {
+      "id": "nacre-he33",
+      "name": "NACRE II · 3He(3He,2p)4He",
+      "version": "Xu et al. 2013; official table, accessed 2026-10-15",
+      "url": "https://www.astro.ulb.ac.be/nacreii/data/3he3he2p4he.dat",
+      "status": "Evaluated total rate, 58 tabulated temperatures",
+      "uncertainty": "Published low/high evaluation bounds; no covariance.",
+      "reuse": "Small factual data extract; original database attribution retained. No separate open data license asserted."
+    },
+    {
+      "id": "jina-c12",
+      "name": "JINA REACLIB · ls09",
+      "version": "2025-03-30 snapshot via pynucastro; pinned 0c22729e39bc14b0510a03f53faf92526b0a2bd6",
+      "url": "https://reaclib.jinaweb.org/c12%28p%2Cg%29n13/ls09/",
+      "status": "Two additive fit sets; app interval T9=0.01–1 is a policy, source validity not certified",
+      "uncertainty": "Fit covariance and nuclear-data uncertainty unavailable.",
+      "reuse": "JINA and original study attribution; pynucastro BSD-3-Clause notice in THIRD_PARTY_NOTICES.md."
+    },
+    {
+      "id": "jina-n14",
+      "name": "JINA REACLIB · im05",
+      "version": "2025-03-30 snapshot via pynucastro; pinned 0c22729e39bc14b0510a03f53faf92526b0a2bd6",
+      "url": "https://reaclib.jinaweb.org/n14%28p%2Cg%29o15/im05/",
+      "status": "Four additive fit sets; original fit T9<2; app T9=0.01–1",
+      "uncertainty": "Fit covariance and nuclear-data uncertainty unavailable.",
+      "reuse": "JINA and original study attribution; pynucastro BSD-3-Clause notice retained."
+    },
+    {
+      "id": "im05-total",
+      "name": "Imbriani et al. · total rate Eq. 15",
+      "version": "arXiv:nucl-ex/0509005v1 (2005)",
+      "url": "https://arxiv.org/abs/nucl-ex/0509005",
+      "status": "Published analytical total-rate fit; T9<2; app T9=0.01–1",
+      "uncertainty": "Paper states fit precision 0.5% (representation error, not total nuclear uncertainty). No combined uncertainty assigned.",
+      "reuse": "Published numerical parameters with attribution."
+    },
+    {
+      "id": "im05-s",
+      "name": "LUNA · 6.79 MeV capture transition",
+      "version": "Imbriani et al. 2005, Table 2; 11 points below resonance",
+      "url": "https://arxiv.org/abs/nucl-ex/0509005",
+      "status": "Measured PARTIAL-channel S factors; Ecm=118.9–248.6 keV. Not total capture.",
+      "uncertainty": "Table error bars retained as quoted; normalization/systematic covariance unavailable.",
+      "reuse": "Small numerical extract with source and channel attribution."
+    },
+    {
+      "id": "im05-res",
+      "name": "LUNA · 259.4 keV resonance",
+      "version": "Imbriani et al. 2005 §3.3, CM energy and width",
+      "url": "https://arxiv.org/abs/nucl-ex/0509005",
+      "status": "Measured isolated resonance; app T9=0.2–1; this interval is a conservative policy, not a published guarantee",
+      "uncertainty": "Er ±0.3 keV, Gamma ±0.05 keV; strength ±0.4 stat ±0.8 systematic meV, kept separate.",
+      "reuse": "Published measured parameters with attribution."
+    },
+    {
+      "id": "kadonis-fe56",
+      "name": "KADoNiS · 56Fe(n,gamma)57Fe",
+      "version": "Historical v0.0, last review 1999; CFM91/92; accessed 2026-10-15",
+      "url": "https://exp-astro.de/kadonis/selementquery.php?isotope=Fe56",
+      "status": "11 published MACS and molar-rate values; kT=5–100 keV; SEF=1.00 in this table",
+      "uncertainty": "MACS30=11.7±0.5 mb. No per-temperature covariance or rate confidence interval assigned.",
+      "reuse": "Small factual extract with original attribution; no separate open data license asserted."
+    }
+  ],
+  "mirror": {
+    "url": "https://raw.githubusercontent.com/pynucastro/pynucastro/0c22729e39bc14b0510a03f53faf92526b0a2bd6/pynucastro/data/reaclib_default2_20250330",
+    "sha256": "24e1f37c502cf8521109b7dd91cb73d2d4acf38f94ffd1fe1fb1e4beec3ba862",
+    "bytes": 18667277
+  },
+  "datasets": [
+    {
+      "id": "nacre-dpg",
+      "type": "evaluated-molar-rate-table",
+      "data": [
+        {
+          "T9": 0.001,
+          "rate": 1.35e-11,
+          "low": 1.09e-11,
+          "high": 1.62e-11
+        },
+        {
+          "T9": 0.002,
+          "rate": 1.87e-8,
+          "low": 1.51e-8,
+          "high": 2.25e-8
+        },
+        {
+          "T9": 0.003,
+          "rate": 6.07e-7,
+          "low": 4.93e-7,
+          "high": 7.27e-7
+        },
+        {
+          "T9": 0.004,
+          "rate": 0.00000538,
+          "low": 0.00000438,
+          "high": 0.00000643
+        },
+        {
+          "T9": 0.005,
+          "rate": 0.0000252,
+          "low": 0.0000206,
+          "high": 0.0000301
+        },
+        {
+          "T9": 0.006,
+          "rate": 0.0000815,
+          "low": 0.0000667,
+          "high": 0.0000971
+        },
+        {
+          "T9": 0.007,
+          "rate": 0.000207,
+          "low": 0.00017,
+          "high": 0.000247
+        },
+        {
+          "T9": 0.008,
+          "rate": 0.000447,
+          "low": 0.000368,
+          "high": 0.000531
+        },
+        {
+          "T9": 0.009,
+          "rate": 0.000855,
+          "low": 0.000704,
+          "high": 0.00101
+        },
+        {
+          "T9": 0.01,
+          "rate": 0.00149,
+          "low": 0.00123,
+          "high": 0.00177
+        },
+        {
+          "T9": 0.011,
+          "rate": 0.00243,
+          "low": 0.00201,
+          "high": 0.00287
+        },
+        {
+          "T9": 0.012,
+          "rate": 0.00373,
+          "low": 0.00309,
+          "high": 0.0044
+        },
+        {
+          "T9": 0.013,
+          "rate": 0.00547,
+          "low": 0.00454,
+          "high": 0.00645
+        },
+        {
+          "T9": 0.014,
+          "rate": 0.00773,
+          "low": 0.00642,
+          "high": 0.0091
+        },
+        {
+          "T9": 0.015,
+          "rate": 0.0106,
+          "low": 0.0088,
+          "high": 0.0124
+        },
+        {
+          "T9": 0.016,
+          "rate": 0.0141,
+          "low": 0.0117,
+          "high": 0.0165
+        },
+        {
+          "T9": 0.018,
+          "rate": 0.0233,
+          "low": 0.0195,
+          "high": 0.0274
+        },
+        {
+          "T9": 0.02,
+          "rate": 0.036,
+          "low": 0.0302,
+          "high": 0.0422
+        },
+        {
+          "T9": 0.025,
+          "rate": 0.0859,
+          "low": 0.0725,
+          "high": 0.1
+        },
+        {
+          "T9": 0.03,
+          "rate": 0.166,
+          "low": 0.141,
+          "high": 0.193
+        },
+        {
+          "T9": 0.04,
+          "rate": 0.435,
+          "low": 0.373,
+          "high": 0.501
+        },
+        {
+          "T9": 0.05,
+          "rate": 0.862,
+          "low": 0.744,
+          "high": 0.986
+        },
+        {
+          "T9": 0.06,
+          "rate": 1.45,
+          "low": 1.26,
+          "high": 1.65
+        },
+        {
+          "T9": 0.07,
+          "rate": 2.2,
+          "low": 1.93,
+          "high": 2.5
+        },
+        {
+          "T9": 0.08,
+          "rate": 3.11,
+          "low": 2.74,
+          "high": 3.51
+        },
+        {
+          "T9": 0.09,
+          "rate": 4.17,
+          "low": 3.69,
+          "high": 4.69
+        },
+        {
+          "T9": 0.1,
+          "rate": 5.37,
+          "low": 4.77,
+          "high": 6.02
+        },
+        {
+          "T9": 0.11,
+          "rate": 6.71,
+          "low": 5.98,
+          "high": 7.49
+        },
+        {
+          "T9": 0.12,
+          "rate": 8.18,
+          "low": 7.31,
+          "high": 9.1
+        },
+        {
+          "T9": 0.13,
+          "rate": 9.77,
+          "low": 8.76,
+          "high": 10.8
+        },
+        {
+          "T9": 0.14,
+          "rate": 11.5,
+          "low": 10.3,
+          "high": 12.7
+        },
+        {
+          "T9": 0.15,
+          "rate": 13.3,
+          "low": 12,
+          "high": 14.7
+        },
+        {
+          "T9": 0.16,
+          "rate": 15.2,
+          "low": 13.7,
+          "high": 16.7
+        },
+        {
+          "T9": 0.18,
+          "rate": 19.3,
+          "low": 17.5,
+          "high": 21.2
+        },
+        {
+          "T9": 0.2,
+          "rate": 23.7,
+          "low": 21.6,
+          "high": 26
+        },
+        {
+          "T9": 0.25,
+          "rate": 36.2,
+          "low": 33.1,
+          "high": 39.4
+        },
+        {
+          "T9": 0.3,
+          "rate": 50.1,
+          "low": 45.9,
+          "high": 54.4
+        },
+        {
+          "T9": 0.35,
+          "rate": 65.2,
+          "low": 59.8,
+          "high": 70.8
+        },
+        {
+          "T9": 0.4,
+          "rate": 81.3,
+          "low": 74.5,
+          "high": 88.4
+        },
+        {
+          "T9": 0.45,
+          "rate": 98.4,
+          "low": 90,
+          "high": 107
+        },
+        {
+          "T9": 0.5,
+          "rate": 116,
+          "low": 106,
+          "high": 127
+        },
+        {
+          "T9": 0.6,
+          "rate": 154,
+          "low": 140,
+          "high": 169
+        },
+        {
+          "T9": 0.7,
+          "rate": 195,
+          "low": 177,
+          "high": 214
+        },
+        {
+          "T9": 0.8,
+          "rate": 238,
+          "low": 216,
+          "high": 261
+        },
+        {
+          "T9": 0.9,
+          "rate": 284,
+          "low": 257,
+          "high": 312
+        },
+        {
+          "T9": 1,
+          "rate": 332,
+          "low": 299,
+          "high": 364
+        },
+        {
+          "T9": 1.25,
+          "rate": 457,
+          "low": 412,
+          "high": 503
+        },
+        {
+          "T9": 1.5,
+          "rate": 591,
+          "low": 531,
+          "high": 652
+        },
+        {
+          "T9": 1.75,
+          "rate": 730,
+          "low": 654,
+          "high": 807
+        },
+        {
+          "T9": 2,
+          "rate": 873,
+          "low": 779,
+          "high": 968
+        },
+        {
+          "T9": 2.5,
+          "rate": 1170,
+          "low": 1040,
+          "high": 1300
+        },
+        {
+          "T9": 3,
+          "rate": 1460,
+          "low": 1300,
+          "high": 1630
+        },
+        {
+          "T9": 3.5,
+          "rate": 1760,
+          "low": 1560,
+          "high": 1970
+        },
+        {
+          "T9": 4,
+          "rate": 2070,
+          "low": 1840,
+          "high": 2300
+        },
+        {
+          "T9": 5,
+          "rate": 2670,
+          "low": 2390,
+          "high": 2950
+        },
+        {
+          "T9": 6,
+          "rate": 3270,
+          "low": 2950,
+          "high": 3600
+        },
+        {
+          "T9": 7,
+          "rate": 3860,
+          "low": 3500,
+          "high": 4230
+        },
+        {
+          "T9": 8,
+          "rate": 4450,
+          "low": 4050,
+          "high": 4860
+        },
+        {
+          "T9": 9,
+          "rate": 5020,
+          "low": 4580,
+          "high": 5480
+        },
+        {
+          "T9": 10,
+          "rate": 5590,
+          "low": 5100,
+          "high": 6080
+        }
+      ]
+    },
+    {
+      "id": "nacre-he33",
+      "type": "evaluated-molar-rate-table",
+      "data": [
+        {
+          "T9": 0.003,
+          "rate": 2.8e-25,
+          "low": 2.55e-25,
+          "high": 3.04e-25
+        },
+        {
+          "T9": 0.004,
+          "rate": 5.55e-22,
+          "low": 5.07e-22,
+          "high": 6.04e-22
+        },
+        {
+          "T9": 0.005,
+          "rate": 1.22e-19,
+          "low": 1.12e-19,
+          "high": 1.33e-19
+        },
+        {
+          "T9": 0.006,
+          "rate": 7.48e-18,
+          "low": 6.83e-18,
+          "high": 8.14e-18
+        },
+        {
+          "T9": 0.007,
+          "rate": 1.99e-16,
+          "low": 1.82e-16,
+          "high": 2.17e-16
+        },
+        {
+          "T9": 0.008,
+          "rate": 2.98e-15,
+          "low": 2.72e-15,
+          "high": 3.24e-15
+        },
+        {
+          "T9": 0.009,
+          "rate": 2.93e-14,
+          "low": 2.68e-14,
+          "high": 3.19e-14
+        },
+        {
+          "T9": 0.01,
+          "rate": 2.09e-13,
+          "low": 1.91e-13,
+          "high": 2.28e-13
+        },
+        {
+          "T9": 0.011,
+          "rate": 1.17e-12,
+          "low": 1.07e-12,
+          "high": 1.27e-12
+        },
+        {
+          "T9": 0.012,
+          "rate": 5.34e-12,
+          "low": 4.89e-12,
+          "high": 5.82e-12
+        },
+        {
+          "T9": 0.013,
+          "rate": 2.08e-11,
+          "low": 1.9e-11,
+          "high": 2.27e-11
+        },
+        {
+          "T9": 0.014,
+          "rate": 7.08e-11,
+          "low": 6.47e-11,
+          "high": 7.71e-11
+        },
+        {
+          "T9": 0.015,
+          "rate": 2.15e-10,
+          "low": 1.97e-10,
+          "high": 2.35e-10
+        },
+        {
+          "T9": 0.016,
+          "rate": 5.95e-10,
+          "low": 5.44e-10,
+          "high": 6.48e-10
+        },
+        {
+          "T9": 0.018,
+          "rate": 3.59e-9,
+          "low": 3.28e-9,
+          "high": 3.91e-9
+        },
+        {
+          "T9": 0.02,
+          "rate": 1.68e-8,
+          "low": 1.54e-8,
+          "high": 1.84e-8
+        },
+        {
+          "T9": 0.025,
+          "rate": 3.71e-7,
+          "low": 3.4e-7,
+          "high": 4.05e-7
+        },
+        {
+          "T9": 0.03,
+          "rate": 0.00000391,
+          "low": 0.00000358,
+          "high": 0.00000427
+        },
+        {
+          "T9": 0.04,
+          "rate": 0.000119,
+          "low": 0.00011,
+          "high": 0.000131
+        },
+        {
+          "T9": 0.05,
+          "rate": 0.00135,
+          "low": 0.00124,
+          "high": 0.00148
+        },
+        {
+          "T9": 0.06,
+          "rate": 0.00849,
+          "low": 0.00782,
+          "high": 0.00932
+        },
+        {
+          "T9": 0.07,
+          "rate": 0.0368,
+          "low": 0.0339,
+          "high": 0.0404
+        },
+        {
+          "T9": 0.08,
+          "rate": 0.123,
+          "low": 0.113,
+          "high": 0.135
+        },
+        {
+          "T9": 0.09,
+          "rate": 0.34,
+          "low": 0.314,
+          "high": 0.374
+        },
+        {
+          "T9": 0.1,
+          "rate": 0.813,
+          "low": 0.752,
+          "high": 0.895
+        },
+        {
+          "T9": 0.11,
+          "rate": 1.74,
+          "low": 1.61,
+          "high": 1.92
+        },
+        {
+          "T9": 0.12,
+          "rate": 3.41,
+          "low": 3.15,
+          "high": 3.76
+        },
+        {
+          "T9": 0.13,
+          "rate": 6.21,
+          "low": 5.75,
+          "high": 6.85
+        },
+        {
+          "T9": 0.14,
+          "rate": 10.7,
+          "low": 9.86,
+          "high": 11.8
+        },
+        {
+          "T9": 0.15,
+          "rate": 17.4,
+          "low": 16.1,
+          "high": 19.2
+        },
+        {
+          "T9": 0.16,
+          "rate": 27.1,
+          "low": 25.1,
+          "high": 30
+        },
+        {
+          "T9": 0.18,
+          "rate": 59.6,
+          "low": 55.2,
+          "high": 65.9
+        },
+        {
+          "T9": 0.2,
+          "rate": 117,
+          "low": 108,
+          "high": 130
+        },
+        {
+          "T9": 0.25,
+          "rate": 450,
+          "low": 416,
+          "high": 498
+        },
+        {
+          "T9": 0.3,
+          "rate": 1240,
+          "low": 1150,
+          "high": 1380
+        },
+        {
+          "T9": 0.35,
+          "rate": 2790,
+          "low": 2580,
+          "high": 3090
+        },
+        {
+          "T9": 0.4,
+          "rate": 5400,
+          "low": 4990,
+          "high": 5980
+        },
+        {
+          "T9": 0.45,
+          "rate": 9420,
+          "low": 8700,
+          "high": 10400
+        },
+        {
+          "T9": 0.5,
+          "rate": 15200,
+          "low": 14000,
+          "high": 16800
+        },
+        {
+          "T9": 0.6,
+          "rate": 33000,
+          "low": 30400,
+          "high": 36400
+        },
+        {
+          "T9": 0.7,
+          "rate": 61000,
+          "low": 56100,
+          "high": 67300
+        },
+        {
+          "T9": 0.8,
+          "rate": 101000,
+          "low": 92400,
+          "high": 111000
+        },
+        {
+          "T9": 0.9,
+          "rate": 153000,
+          "low": 140000,
+          "high": 169000
+        },
+        {
+          "T9": 1,
+          "rate": 219000,
+          "low": 201000,
+          "high": 242000
+        },
+        {
+          "T9": 1.25,
+          "rate": 446000,
+          "low": 406000,
+          "high": 493000
+        },
+        {
+          "T9": 1.5,
+          "rate": 760000,
+          "low": 690000,
+          "high": 840000
+        },
+        {
+          "T9": 1.75,
+          "rate": 1160000,
+          "low": 1050000,
+          "high": 1280000
+        },
+        {
+          "T9": 2,
+          "rate": 1640000,
+          "low": 1490000,
+          "high": 1810000
+        },
+        {
+          "T9": 2.5,
+          "rate": 2830000,
+          "low": 2560000,
+          "high": 3130000
+        },
+        {
+          "T9": 3,
+          "rate": 4300000,
+          "low": 3890000,
+          "high": 4740000
+        },
+        {
+          "T9": 3.5,
+          "rate": 6010000,
+          "low": 5430000,
+          "high": 6600000
+        },
+        {
+          "T9": 4,
+          "rate": 7920000,
+          "low": 7160000,
+          "high": 8690000
+        },
+        {
+          "T9": 5,
+          "rate": 12200000,
+          "low": 11100000,
+          "high": 13400000
+        },
+        {
+          "T9": 6,
+          "rate": 17000000,
+          "low": 15400000,
+          "high": 18500000
+        },
+        {
+          "T9": 7,
+          "rate": 22100000,
+          "low": 20100000,
+          "high": 24000000
+        },
+        {
+          "T9": 8,
+          "rate": 27300000,
+          "low": 25000000,
+          "high": 29600000
+        },
+        {
+          "T9": 9,
+          "rate": 32700000,
+          "low": 29900000,
+          "high": 35300000
+        },
+        {
+          "T9": 10,
+          "rate": 38000000,
+          "low": 34900000,
+          "high": 40900000
+        }
+      ]
+    },
+    {
+      "id": "jina-c12",
+      "type": "reaclib-additive-fit",
+      "coefficients": [
+        [
+          17.1482,
+          0,
+          -13.692,
+          -0.230881,
+          4.44362,
+          -3.15898,
+          -0.666667
+        ],
+        [
+          17.5428,
+          -3.77849,
+          -5.10735,
+          -2.24111,
+          0.148883,
+          0,
+          -1.5
+        ]
+      ],
+      "applicationT9Range": [
+        0.01,
+        1
+      ],
+      "sourceValidity": "Not certified in retrieved metadata; application restriction is not a validation claim."
+    },
+    {
+      "id": "jina-n14",
+      "type": "reaclib-additive-fit",
+      "coefficients": [
+        [
+          6.73578,
+          -4.891,
+          0,
+          0,
+          0,
+          0,
+          0.0682
+        ],
+        [
+          7.65444,
+          -2.998,
+          0,
+          0,
+          0,
+          0,
+          -1.5
+        ],
+        [
+          20.1169,
+          0,
+          -15.193,
+          -4.63975,
+          9.73458,
+          -9.55051,
+          0.333333
+        ],
+        [
+          17.01,
+          0,
+          -15.193,
+          -0.161954,
+          -7.52123,
+          -0.987565,
+          -0.666667
+        ]
+      ],
+      "applicationT9Range": [
+        0.01,
+        1
+      ],
+      "sourceValidity": "T9<2"
+    },
+    {
+      "id": "im05-total",
+      "type": "published-analytic-fit",
+      "equation": "Imbriani2005 Eq15",
+      "parameters": [
+        3.12,
+        -15.193,
+        0.486,
+        0.782,
+        -1.5,
+        17.97,
+        -3.32,
+        2.11,
+        -2.998,
+        8.42,
+        0.0682,
+        -4.891
+      ],
+      "applicationT9Range": [
+        0.01,
+        1
+      ],
+      "sourceValidity": "T9<2"
+    },
+    {
+      "id": "im05-s",
+      "type": "measured-partial-channel-S-factor",
+      "channel": "Capture to Ex=6.79MeV in15O only",
+      "energyRangeKeV": [
+        118.9,
+        248.6
+      ],
+      "data": [
+        {
+          "energyKeV": 118.9,
+          "S": 1.2,
+          "error": 0.1
+        },
+        {
+          "energyKeV": 124.4,
+          "S": 1.36,
+          "error": 0.12
+        },
+        {
+          "energyKeV": 157,
+          "S": 1.36,
+          "error": 0.05
+        },
+        {
+          "energyKeV": 173.1,
+          "S": 1.26,
+          "error": 0.04
+        },
+        {
+          "energyKeV": 182.2,
+          "S": 1.3,
+          "error": 0.03
+        },
+        {
+          "energyKeV": 198.1,
+          "S": 1.34,
+          "error": 0.03
+        },
+        {
+          "energyKeV": 209.5,
+          "S": 1.55,
+          "error": 0.03
+        },
+        {
+          "energyKeV": 219.2,
+          "S": 1.94,
+          "error": 0.05
+        },
+        {
+          "energyKeV": 229.1,
+          "S": 2.3,
+          "error": 0.02
+        },
+        {
+          "energyKeV": 239.1,
+          "S": 3.62,
+          "error": 0.05
+        },
+        {
+          "energyKeV": 248.6,
+          "S": 11.98,
+          "error": 0.08
+        }
+      ],
+      "totalCrossSections": null
+    },
+    {
+      "id": "im05-res",
+      "type": "measured-isolated-resonance",
+      "data": {
+        "energyKeV": 259.4,
+        "energyErrorKeV": 0.3,
+        "strengthEV": 0.0129,
+        "strengthErrorEV": 0.0004,
+        "widthKeV": 0.96,
+        "validT9": [
+          0.2,
+          1
+        ]
+      },
+      "strengthSystematicErrorEV": 0.0008,
+      "widthErrorKeV": 0.05,
+      "uncertainty": "strengthErrorEV in the object is statistical only; no combined covariance assumed."
+    },
+    {
+      "id": "kadonis-fe56",
+      "type": "published-MACS-and-molar-rate",
+      "data": {
+        "kT": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          40,
+          50,
+          60,
+          80,
+          100
+        ],
+        "macsMb": [
+          11.8,
+          9.73,
+          10.8,
+          11.5,
+          11.7,
+          11.7,
+          11.3,
+          10.6,
+          9.97,
+          8.63,
+          7.42
+        ],
+        "rates": [
+          7.04,
+          8.21,
+          11.16,
+          13.72,
+          15.61,
+          17.1,
+          19.07,
+          20,
+          20.6,
+          20.59,
+          19.8
+        ],
+        "ratePoints": [
+          {
+            "T9": 0.05802259060775042,
+            "rate": 704000
+          },
+          {
+            "T9": 0.11604518121550084,
+            "rate": 821000.0000000001
+          },
+          {
+            "T9": 0.17406777182325125,
+            "rate": 1116000
+          },
+          {
+            "T9": 0.23209036243100167,
+            "rate": 1372000
+          },
+          {
+            "T9": 0.2901129530387521,
+            "rate": 1561000
+          },
+          {
+            "T9": 0.3481355436465025,
+            "rate": 1710000.0000000002
+          },
+          {
+            "T9": 0.46418072486200335,
+            "rate": 1907000
+          },
+          {
+            "T9": 0.5802259060775042,
+            "rate": 2000000
+          },
+          {
+            "T9": 0.696271087293005,
+            "rate": 2060000.0000000002
+          },
+          {
+            "T9": 0.9283614497240067,
+            "rate": 2059000
+          },
+          {
+            "T9": 1.1604518121550085,
+            "rate": 1980000
+          }
+        ]
+      },
+      "macsUnit": "mb",
+      "publishedRatesUnit": "1e5 cm3 mol^-1 s^-1",
+      "MACS30ErrorMb": 0.5,
+      "stellarEnhancementFactors": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "crossSections": null
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+name: Scientific and technical CI
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm test -- --reporter=default --reporter=json --outputFile=reports/vitest.json
+      - run: npm run validate:data
+      - run: npm run typecheck
+      - run: npm run build
+      - run: node scripts/make-standalone.mjs
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+      - run: npm run report:validation
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: verification-and-build
+          path: |
+            reports/
+            dist/
+            docs/SCIENTIFIC_VALIDATION.md

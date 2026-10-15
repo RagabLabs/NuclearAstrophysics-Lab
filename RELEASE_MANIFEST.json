@@ -1,0 +1,449 @@
+{
+  "application": "Nuclear Astrophysics Lab",
+  "version": "1.0.0",
+  "projectNumber": 10,
+  "generatedUTC": "2026-10-15T09:40:39.527220+00:00",
+  "fileCountExcludingManifest": 88,
+  "files": [
+    {
+      "path": ".github/workflows/ci.yml",
+      "bytes": 888,
+      "sha256": "3d3bd82d43b6082d37848683798a9c53e04a6517b19a9d6c62b39b3d28ee4cb0"
+    },
+    {
+      "path": ".github/workflows/pages.yml",
+      "bytes": 954,
+      "sha256": "fd58d2c9dc62430493e9c494af702e7510169f1be74b399c3dc56e04ea7cd497"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 63,
+      "sha256": "82eaa5e04de9523c94aae899334adce703f6197be8ad21f9eb6ae074582e231e"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 1311,
+      "sha256": "6b5577f2067c0139bb09f51ceb0f3d5a186820de63808bd7035b553e6d5f82c3"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1236,
+      "sha256": "f82f601362259e1fed491ff7618bad5735cc1236a9337471809047838d6c61ce"
+    },
+    {
+      "path": "README.md",
+      "bytes": 8102,
+      "sha256": "02fb4004c74a379fcc81af4c5899a3b472b70727b14a207626b0e982b63ba016"
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "bytes": 2134,
+      "sha256": "758402203320c92620f686b369212037c33251d976f3b433aa218b2568e1f2bf"
+    },
+    {
+      "path": "dist/assets/html2canvas.esm-B0tyYwQk.js",
+      "bytes": 202363,
+      "sha256": "c2bd1bddd0796f58fde6e213c061b2721256d46366bcee00c8530819e5fbc573"
+    },
+    {
+      "path": "dist/assets/index-DSi0u_2a.css",
+      "bytes": 21813,
+      "sha256": "53ebc37a6d32e35e60729e88f705eaf98860bfdfaa2aa06778a6609a1d1b0d57"
+    },
+    {
+      "path": "dist/assets/index-WE4Ne0_T.js",
+      "bytes": 1706840,
+      "sha256": "585e943fc2b437690e1947c77f7070f920f300165c5262a2df53573444416ae3"
+    },
+    {
+      "path": "dist/assets/index.es-Cf_Z9zV0.js",
+      "bytes": 159736,
+      "sha256": "856192ea8138519d52dba343e9a9d85a22cecf5a97d0fcedc35b9ec002b2a8dc"
+    },
+    {
+      "path": "dist/assets/purify.es-CAi2OJFm.js",
+      "bytes": 30469,
+      "sha256": "8e143ee7bcdf076d62676183aacc62568c9adb8042c57d4fef7d62e1ca7c345a"
+    },
+    {
+      "path": "dist/data/nuclear-astrophysics-v1.json",
+      "bytes": 29121,
+      "sha256": "55358c7a2bc152ea3be28cc1419e907c00be8e97754cf709c764ceb71deb7705"
+    },
+    {
+      "path": "dist/index.html",
+      "bytes": 614,
+      "sha256": "198c713d75d9019ba4ee282104c40f0e694ed9e89ded3820bc82df05198f6b9e"
+    },
+    {
+      "path": "dist/standalone.html",
+      "bytes": 2186508,
+      "sha256": "4fd35149a6485464be7871e52754a5046e2370ba570ebe441faf7e3ea681b2a1"
+    },
+    {
+      "path": "docs/CALCULATION_UNIQUENESS.md",
+      "bytes": 5415,
+      "sha256": "da26ae29794ac6f7a02ea5f592612ebd6687567057a9c66b950dff55e9c6c115"
+    },
+    {
+      "path": "docs/GAMOW_MODELS.md",
+      "bytes": 1802,
+      "sha256": "8f2ee43248261efc787294f0a8ef9f63e6779f8fdb2ad3a169a093d19e17a69f"
+    },
+    {
+      "path": "docs/GITHUB_DEPLOYMENT.md",
+      "bytes": 1650,
+      "sha256": "346ee5cfbde9760a4bbb8ad3b55bbb90b949b749a734f39eb1bf6bad546e4a3b"
+    },
+    {
+      "path": "docs/KNOWN_LIMITATIONS.md",
+      "bytes": 3213,
+      "sha256": "0d3ea99785266b60f41417cb527e28098bbceb3bada6a151398a58cc75cdbb03"
+    },
+    {
+      "path": "docs/NUCLEAR_DATA_SOURCES.md",
+      "bytes": 6985,
+      "sha256": "eee615d084caba267617610a57276d12cf0e1d05a5185d7769d179abc8000b50"
+    },
+    {
+      "path": "docs/NUMERICAL_INTEGRATION.md",
+      "bytes": 2814,
+      "sha256": "0ca03df219cd3db259c6cbf275f142802fc4fdff4740e7aa4016fbaa2e0d0f8c"
+    },
+    {
+      "path": "docs/PROJECT_BRIEF.md",
+      "bytes": 23199,
+      "sha256": "f180f49415595c6131553932f3513a22a2276c8c577a3432776e595d6092b01f"
+    },
+    {
+      "path": "docs/SCIENTIFIC_METHODS.md",
+      "bytes": 5416,
+      "sha256": "28f8694725cde2dd478178d7726140645820957e98ed0274ac1c83253ebadf0a"
+    },
+    {
+      "path": "docs/SCIENTIFIC_VALIDATION.md",
+      "bytes": 5744,
+      "sha256": "30e0bcb8e81c2d632fc701eadeb67fc3a543d437de4f21a018c9f78709b18f42"
+    },
+    {
+      "path": "docs/STELLAR_REACTION_RATES.md",
+      "bytes": 2997,
+      "sha256": "0c771061d1b6099f22d409a583652afb79ceae60fd43e08afd950bc64764ba26"
+    },
+    {
+      "path": "docs/TEST_REPORT.md",
+      "bytes": 3702,
+      "sha256": "7e65c8f3b96971ef2c08e15d4e2f7148f711942241c7072c2eb7130f3438c1d1"
+    },
+    {
+      "path": "docs/UNCERTAINTY_POLICY.md",
+      "bytes": 2494,
+      "sha256": "4381aafda57c3173bd730a384319773bffbf6fa584ff5f9b828d5a7b002f639b"
+    },
+    {
+      "path": "index.html",
+      "bytes": 467,
+      "sha256": "743dfbc6248fa9a13cede10ee1dc6c98e44ff4852ee3ef734da929a4c0aee2eb"
+    },
+    {
+      "path": "output/pdf/NuclearAstrophysics-Scientific-Verification.pdf",
+      "bytes": 64105,
+      "sha256": "e86b14c7de1274785fe66762976f39d3eed0dba5af5811eb34b0708dfac5c6bd"
+    },
+    {
+      "path": "output/pdf/example-analysis.pdf",
+      "bytes": 173949,
+      "sha256": "1fd6b8545742c879bf9c3a9d10bb1c7e1832e847f4b34e0d1ba7d97387b3004d"
+    },
+    {
+      "path": "package-lock.json",
+      "bytes": 92326,
+      "sha256": "0b7259cf2e18d544f9d9df0cf4954679f1045c554efc9d7d9da90f57e9e0374e"
+    },
+    {
+      "path": "package.json",
+      "bytes": 1115,
+      "sha256": "48ea7125d201f4718018ea321ee9d6ca3919b678d3ab68896dd04c754cd91583"
+    },
+    {
+      "path": "playwright.config.ts",
+      "bytes": 867,
+      "sha256": "4324a3bcf916667956c510946ebd30e146d7f0cf07e6df7a5de558de31722443"
+    },
+    {
+      "path": "public/data/nuclear-astrophysics-v1.json",
+      "bytes": 29121,
+      "sha256": "55358c7a2bc152ea3be28cc1419e907c00be8e97754cf709c764ceb71deb7705"
+    },
+    {
+      "path": "reports/data-validation.json",
+      "bytes": 17849,
+      "sha256": "c3a2f7dc6158c4eafc6352d5373a80aae927eca82a0f451b7b49425ca4e6753a"
+    },
+    {
+      "path": "reports/example-analysis.csv",
+      "bytes": 13001,
+      "sha256": "257aabee4175494355b56465c78f6bba322b2d597f794a2a0f11bc69f5a39543"
+    },
+    {
+      "path": "reports/example-analysis.json",
+      "bytes": 20979,
+      "sha256": "8329c411ac51a2ce51dc71ff23d2bd179012857dec50873428c5ebb7a2399e19"
+    },
+    {
+      "path": "reports/example-analysis.png",
+      "bytes": 443533,
+      "sha256": "ddeb33669bf650f487c469da256295ee77e5ad8f70e27185c88047f770bf1939"
+    },
+    {
+      "path": "reports/playwright.json",
+      "bytes": 43744,
+      "sha256": "a9a047f8968e5d815c9535432e4964139b653a16e04c7723456bf923d1ff7b81"
+    },
+    {
+      "path": "reports/scientific-validation.csv",
+      "bytes": 4364,
+      "sha256": "1facc647a0f1eefa66eb73f519ccbd341ff703faa68e445be5c03ea820aef43d"
+    },
+    {
+      "path": "reports/scientific-validation.json",
+      "bytes": 7775,
+      "sha256": "3b3e8b9cc5c2c19c6f9c2c20f2d25dea4e7a6b26b76865570ff8a92de465db64"
+    },
+    {
+      "path": "reports/technical-checks.json",
+      "bytes": 1909,
+      "sha256": "f2e17ed90c0062c5ae193f3a5f4082c59a44d31b6da0db4ab9fbe3b61f7c709d"
+    },
+    {
+      "path": "reports/vitest.json",
+      "bytes": 41836,
+      "sha256": "ddd4b091575c1b6074076b4eefc4c9d05e805982220cd58e220f384c3a6107cc"
+    },
+    {
+      "path": "requirements-report.txt",
+      "bytes": 50,
+      "sha256": "dd799a4aa410a31d63665c8d55c2088d881d2226d76681a2d91732f0870a2651"
+    },
+    {
+      "path": "scripts/export-data.ts",
+      "bytes": 2293,
+      "sha256": "358564e12299c2e4a4c492185c49c622dd2290394199f6f635555982f9cbe4bd"
+    },
+    {
+      "path": "scripts/fetch-data.py",
+      "bytes": 2308,
+      "sha256": "43df57b46a2cf01be3e712c5f0298476a20a7bae62509b7cc7e28d0564e9bcb3"
+    },
+    {
+      "path": "scripts/make-pdf-report.py",
+      "bytes": 12527,
+      "sha256": "2be6618f4114c8c20610fdaa6c53ba626d64c7afee61a1bd21baf42a48e2da46"
+    },
+    {
+      "path": "scripts/make-standalone.mjs",
+      "bytes": 960,
+      "sha256": "d2cef56e3fde77fd977383730398fcddaf34960289e557a383e38f4177771346"
+    },
+    {
+      "path": "scripts/validate-data.ts",
+      "bytes": 3254,
+      "sha256": "a7856245902fc7ac09affe911e330ebdb4b04c2aec37908f979fab6b09eb5c12"
+    },
+    {
+      "path": "scripts/validation-report.ts",
+      "bytes": 7611,
+      "sha256": "48a3b3770330646f0dea96e2889389cb068e5e3b0ffcb38f37d4f879512a1750"
+    },
+    {
+      "path": "src/App.tsx",
+      "bytes": 32205,
+      "sha256": "e8eafa1cb5d47ac88e6f62883aade692c06a220e515a5cf6d318e7aa9e1aae0e"
+    },
+    {
+      "path": "src/assets/FONT_LICENSE.txt",
+      "bytes": 3859,
+      "sha256": "63d3ba759d12804c5b31a9d5940d855c1820d1f5999e6b0872eb1c7ff045fbc9"
+    },
+    {
+      "path": "src/assets/reportFont.ts",
+      "bytes": 1013064,
+      "sha256": "99ed1c8baf3fa1db59f9f1e313e1b23a94fdd79ae1a0e35c98a96cedf8507c1b"
+    },
+    {
+      "path": "src/calculations.ts",
+      "bytes": 21423,
+      "sha256": "0ee6fa3861a559306c899852ca217a1acabaf7a0ed550c2b906bf53b8b51f443"
+    },
+    {
+      "path": "src/components/Chart.tsx",
+      "bytes": 4992,
+      "sha256": "1c6340d3cc4f989e791ec3b133bb1455c2daeba50eab44932d8ec755b555ced2"
+    },
+    {
+      "path": "src/content.ts",
+      "bytes": 5840,
+      "sha256": "4a51e68fc402875a1c79eaea32739f61b5d7f278bdd0f3fe8bf6c29f764910f5"
+    },
+    {
+      "path": "src/data/2hpg3he.json",
+      "bytes": 4891,
+      "sha256": "f4aac81a2c60f5ce5d0e168895aa47112910d33ed3366156021f5d02e43a0f8d"
+    },
+    {
+      "path": "src/data/3he3he2p4he.json",
+      "bytes": 5034,
+      "sha256": "417d195f416894756e1c248aaf909fd08f82e947023bec3e8fd9d2ef35dbdf10"
+    },
+    {
+      "path": "src/data/catalog.ts",
+      "bytes": 9002,
+      "sha256": "500541b0a645d7d7d83901043b25de25391b4e95db7dd262024090421c7a1ce8"
+    },
+    {
+      "path": "src/data/raw/2hpg3he.dat",
+      "bytes": 2373,
+      "sha256": "1277206c9c14817482239e5b7f053943c4674e7c2f1a7dfab0f20a9c012fea18"
+    },
+    {
+      "path": "src/data/raw/3he3he2p4he.dat",
+      "bytes": 2335,
+      "sha256": "ae753487ff5dfba39fc8dfa0341442493f0cd4145904c7bd25def7a773b8afb1"
+    },
+    {
+      "path": "src/data/raw/reaclib-selected.txt",
+      "bytes": 1350,
+      "sha256": "2eb11d9c9e5b9fc14acff5a29b87e722f7690a230812e3ed26749b552d97ad45"
+    },
+    {
+      "path": "src/exports.ts",
+      "bytes": 5289,
+      "sha256": "e24d04efb6fe36ab72696686167e861eea379bd20edf5577243eb6ba19e7f00b"
+    },
+    {
+      "path": "src/i18n.ts",
+      "bytes": 13195,
+      "sha256": "73ee9b53c4c7463a3a6a074fc8bd868ded1835ea2364d19673a76373265c1950"
+    },
+    {
+      "path": "src/main.tsx",
+      "bytes": 200,
+      "sha256": "c88ac0511f3a84fe534b6854b0dfce80aed1cdcac79a50d35bfd4fa11eac2a55"
+    },
+    {
+      "path": "src/physics/constants.ts",
+      "bytes": 742,
+      "sha256": "5bde8f01af8bfac55ed92c390b4943e24ac5cfe219653d2a708320eeabde0359"
+    },
+    {
+      "path": "src/physics/energyGeneration.ts",
+      "bytes": 1064,
+      "sha256": "b7b1fd4431b9124b46f2e083ae4670c1bb80c92a3658e98aa5899d7aceb640f5"
+    },
+    {
+      "path": "src/physics/gamowPeak.ts",
+      "bytes": 759,
+      "sha256": "0f8a0e7a44d3a0e43b721197eb3e71e83455a2b507e4398613a074bbd7161a58"
+    },
+    {
+      "path": "src/physics/gamowWindow.ts",
+      "bytes": 504,
+      "sha256": "1e7533f287f3050f2b723147425eb6b6000b6cc172acf170e1985b724f677f2e"
+    },
+    {
+      "path": "src/physics/integration.ts",
+      "bytes": 2501,
+      "sha256": "b7205d592d4e117a76a58b94147956536eb5b9182470a56b69d4570d69397ca3"
+    },
+    {
+      "path": "src/physics/reaclib.ts",
+      "bytes": 943,
+      "sha256": "175e4e4fc52f9e21e02768ac63c83771e0fce22d29ec305f9a2e29d790415094"
+    },
+    {
+      "path": "src/physics/reactionTimescale.ts",
+      "bytes": 926,
+      "sha256": "4f0da3f0889748fb447e65384ae4f9eb5cf86588790f29b3935dff1112320d44"
+    },
+    {
+      "path": "src/physics/resonantRate.ts",
+      "bytes": 2339,
+      "sha256": "6df57c325c073a0c621dcce436f75e0cca9aaa4c5ba6e8c3c3660d06feb44cfa"
+    },
+    {
+      "path": "src/physics/sFactor.ts",
+      "bytes": 1149,
+      "sha256": "589143f894b1af75894bb608ee293d5a9206149e541c4f4a9d8f17644cc37f38"
+    },
+    {
+      "path": "src/physics/temperatureSensitivity.ts",
+      "bytes": 2110,
+      "sha256": "0c62a838b97beaa3f8fafba900dcab86b59b041bea7ccb1c00e75d3360aee65d"
+    },
+    {
+      "path": "src/physics/thermalDistribution.ts",
+      "bytes": 1495,
+      "sha256": "6c44d1c6a36fa649b910e1ce9b2a8352303c310f1759edb35d34a399e990c845"
+    },
+    {
+      "path": "src/physics/thermalRate.ts",
+      "bytes": 5989,
+      "sha256": "6f94776c3e67f0381090afccc8e053984b07389d3ca1f16acc9e366d0ff0451f"
+    },
+    {
+      "path": "src/physics/uncertainty.ts",
+      "bytes": 1690,
+      "sha256": "8399da9d47031a3c4a774649c59b70cd8e5687adac339b5f1f65fa37cb5f723f"
+    },
+    {
+      "path": "src/physics/units.ts",
+      "bytes": 1259,
+      "sha256": "07aad4037cad695cc7ab109547861c0840955c3df2f9b3fab91085cffb1448d0"
+    },
+    {
+      "path": "src/physics/validation.ts",
+      "bytes": 1475,
+      "sha256": "9ea236fb27c50ff215dfaf3f89dc10dad4d1d7016a54eb0b40d59f33542c1c4b"
+    },
+    {
+      "path": "src/physics/volumetricRate.ts",
+      "bytes": 711,
+      "sha256": "4fb7ac84f5366389effcdd2675aa8af6682108e12e486ea51084088f7a7984cf"
+    },
+    {
+      "path": "src/styles.css",
+      "bytes": 21872,
+      "sha256": "4cbf6dea45ad05c31d11158bee9c5cecf3134464a0d79aacb93f3b34b8f34062"
+    },
+    {
+      "path": "standalone.html",
+      "bytes": 2186508,
+      "sha256": "4fd35149a6485464be7871e52754a5046e2370ba570ebe441faf7e3ea681b2a1"
+    },
+    {
+      "path": "tests/browser/app.spec.ts",
+      "bytes": 5008,
+      "sha256": "7c5b505ccfaf4588a5839401b773bafba4047b2598b6607952922065f5baeefa"
+    },
+    {
+      "path": "tests/data-and-reports.test.ts",
+      "bytes": 5628,
+      "sha256": "c00005d3f6e41ae96e2838b48594a69857494a805e3fec852e8a5fcaf5490804"
+    },
+    {
+      "path": "tests/physics.test.ts",
+      "bytes": 12759,
+      "sha256": "e35ca3d0f99a6c48fab4fa3c0252e21300342064be25d31e746f2b3c3d0add38"
+    },
+    {
+      "path": "tsconfig.json",
+      "bytes": 443,
+      "sha256": "090468e339e69f33076f3a7aefd2ebe79c2a163ace757cc86c71d0ca29bb1865"
+    },
+    {
+      "path": "vite.config.ts",
+      "bytes": 277,
+      "sha256": "20b2b6f1d25463a31eac7f5a0d28ea5018eee91157090eaad4982f7c92a9c966"
+    }
+  ]
+}

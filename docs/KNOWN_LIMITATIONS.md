@@ -1,0 +1,16 @@
+# Known limitations and review boundaries
+
+1. Chromium and the control-browser skill were unavailable in this managed environment. The28 declared desktop/mobile Playwright checks are skipped, not passed. No browser screenshots, responsive visual verification, native browser downloads or interactive keyboard/pointer behavior are claimed as executed. Fifteen server-rendering smoke checks are separate and do not replace them. The source includes a CI browser job and local instructions.
+2. Five selected reactions and eight data/model records form a curated demonstration database, not complete JINA, KADoNiS, NACRE, IAEA or NNDC coverage. Several records share one experiment and are not independent measurements.
+3. No total monoenergetic experimental sigma(E) grid is bundled. The thermal integrator uses documented user CSV or explicit mathematical models. LUNA S values represent one partial capture transition. MACS is never treated as sigma(E).
+4. JINA direct downloads returned403 during research. The verified official pynucastro mirror is pinned to2025-03-30. It is not labeled latest. KADoNiS Fe56 is the accessible historicalv0.0 recommendation with1999 review.
+5. Default reduced masses and abundance conversion use mass numbers. Nuclear-mass precision, plasma screening, excited-state populations, degeneracy, reverse rates and transport are not modeled. A nonrelativistic model guard rejects kT above1% of reduced rest energy; this is a conservative policy, not a relativistic correction.
+6. Gamow formulas require explicit nonresonant applicability; their Gaussian interval is not a universal reaction window. The narrow-resonance result is an isolated contribution. Width ratios are necessary screens; detailed partial-width/tail physics is not solved.
+7. A converged quadrature cannot recover unresolved structures or missing tails. Neither table interpolation nor all numerical error estimates have a proven global physical bound.
+8. No complete uncertainty is available without source covariance and temperature/density errors. No unprovided uncertainty has been manufactured. PDF precision digits are not extra experimental information.
+9. Reports are English/ASCII scientific text, including when the UI is Arabic. Source titles, numerical diagnostics and some technical messages retain English. User-facing navigation, controls, descriptions, primary results and major assumption warnings are bilingual.
+10. The standard Vite production site needs HTTP serving. The supplied self-contained HTML is the offline file-opening alternative. Download APIs and SVG-to-PNG rasterization can depend on browser security policy; their browser checks remain unexecuted here.
+11. GitHub repository creation, publication, Pages enablement and deployment have not occurred. The deployment workflow is manual-only. The proposed repository name is not assumed to exist.
+12. No full stellar evolution, equation of state, reaction network, equilibrium composition or final abundance prediction is offered.
+
+This application provides educational and research-oriented nuclear astrophysics calculations under explicitly stated assumptions. It is not a complete stellar evolution or nucleosynthesis simulation.
